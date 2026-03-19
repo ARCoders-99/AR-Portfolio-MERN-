@@ -25,10 +25,10 @@ const Contact = () => {
     setStatus({ type: '', message: '' })
 
     try {
-      const response = await axios.post(
-        import.meta.env.VITE_API_URL || 'http://localhost:5000/api/contact',
-        formData
-      )
+  const response = await axios.post(
+    import.meta.env.VITE_API_URL || 'https://ar-portfolio-mern-backend.onrender.com/api/contact',
+    formData
+  );
 
       if (response.data.success) {
         setStatus({
