@@ -1,0 +1,39 @@
+<svg width="175" height="40" viewBox="0 0 175 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0284c7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0284c7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Beautiful Modern Icon: Stylized badge with "A" -->
+  <g>
+    <!-- Outer subtle ring for depth -->
+    <circle cx="20" cy="20" r="13.5" fill="url(#iconGradient)" opacity="0.15"/>
+    <!-- Main circle -->
+    <circle cx="20" cy="20" r="12" fill="url(#iconGradient)"/>
+    
+    <!-- Letter "A" - clean design -->
+    <path d="M20 8.5 L25.2 25.5 L14.8 25.5 Z" fill="white"/>
+    <path d="M20 12.8 L22.2 21.2 L17.8 21.2 Z" fill="white"/>
+    
+    <!-- Code brackets - subtle accent -->
+    <path d="M9 18.5 L7 20 L9 21.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.85"/>
+    <path d="M31 18.5 L33 20 L31 21.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.85"/>
+  </g>
+  
+  <!-- Beautiful Typography -->
+  <g>
+    <text x="40" y="27" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="800" fill="url(#textGradient)" letter-spacing="-0.3">
+      Ar
+    </text>
+    <text x="63" y="27" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#0f172a" letter-spacing="-0.2">
+      Coders
+    </text>
+  </g>
+</svg>
