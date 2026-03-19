@@ -25,10 +25,10 @@ const Contact = () => {
     setStatus({ type: '', message: '' })
 
     try {
-  const response = await axios.post(
-    import.meta.env.VITE_API_URL || 'https://ar-portfolio-mern-backend.onrender.com/api/contact',
-    formData
-  );
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL || 'http://localhost:5000/api/contact',
+        formData
+      )
 
       if (response.data.success) {
         setStatus({
@@ -94,35 +94,42 @@ const Contact = () => {
 
     {/* Contact Info Cards */}
     <div className="grid md:grid-cols-3 gap-6 mb-12">
-      {contactInfo.map((info, index) => (
-        <div
-          key={index}
-          className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-2 border-slate-300 hover:border-sky-400 text-center group"
-        >
-          <div className="w-14 h-14 mx-auto mb-4 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600 group-hover:bg-sky-100 group-hover:scale-110 transition-all duration-300 border-2 border-sky-200">
-            <div className="text-2xl">{info.icon}</div>
-          </div>
-
-          <h3 className="font-bold text-slate-900 mb-2 text-lg">
-            {info.title}
-          </h3>
-
-          {info.link ? (
-            <a
-              href={info.link}
-              target={info.title === 'Email' || info.title === 'LinkedIn' ? "_blank" : "_self"}
-              rel={info.title === 'Email' || info.title === 'LinkedIn' ? "noopener noreferrer" : ""}
-              className="text-slate-600 hover:text-sky-600 transition-colors text-sm font-medium"
-            >
+      {contactInfo.map((info, index) =>
+        info.link ? (
+          <a
+            key={index}
+            href={info.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-2 border-slate-300 hover:border-sky-400 text-center group cursor-pointer no-underline block"
+          >
+            <div className="w-14 h-14 mx-auto mb-4 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600 group-hover:bg-sky-100 group-hover:scale-110 transition-all duration-300 border-2 border-sky-200">
+              <div className="text-2xl">{info.icon}</div>
+            </div>
+            <h3 className="font-bold text-slate-900 mb-2 text-lg">
+              {info.title}
+            </h3>
+            <p className="text-sky-600 text-sm font-medium group-hover:underline">
               {info.value}
-            </a>
-          ) : (
+            </p>
+          </a>
+        ) : (
+          <div
+            key={index}
+            className="bg-white p-6 rounded-2xl shadow-sm border-2 border-slate-300 text-center group"
+          >
+            <div className="w-14 h-14 mx-auto mb-4 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600 border-2 border-sky-200">
+              <div className="text-2xl">{info.icon}</div>
+            </div>
+            <h3 className="font-bold text-slate-900 mb-2 text-lg">
+              {info.title}
+            </h3>
             <p className="text-slate-600 text-sm font-medium">
               {info.value}
             </p>
-          )}
-        </div>
-      ))}
+          </div>
+        )
+      )}
     </div>
 
     {/* Contact Form */}
