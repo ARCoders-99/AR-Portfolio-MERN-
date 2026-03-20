@@ -64,22 +64,14 @@ setInterval(() => {
 }, 30 * 60 * 1000)
 
 // Create transporter for Nodemailer
-const createTransporter = () => {
-  return nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // Must be false for 587
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-      ciphers: 'SSLv3',
-      rejectUnauthorized: false 
-    },
-    connectionTimeout: 20000, // Increase to 20 seconds
-  });
-};
+const transporter = nodemailer.createTransport({
+  host: 'smtp.sendgrid.net',
+  port: 587,
+  auth: {
+    user: 'apikey', // literally 'apikey'
+    pass: process.env.SENDGRID_API_KEY
+  }
+})
 // HTML escaping helper for security
 const escapeHtml = (text) => {
   const map = {
