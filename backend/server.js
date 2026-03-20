@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend'
 import { rateLimit } from 'express-rate-limit'
 
 dotenv.config()
@@ -31,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 // 2. Body parsing middleware should be separate
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Rate limiting for contact form
 const contactLimiter = rateLimit({
@@ -63,15 +64,6 @@ setInterval(() => {
   }
 }, 30 * 60 * 1000)
 
-// Create transporter for Nodemailer
-const transporter = nodemailer.createTransport({
-  host: 'smtp.sendgrid.net',
-  port: 587,
-  auth: {
-    user: 'apikey', // literally 'apikey'
-    pass: process.env.SENDGRID_API_KEY
-  }
-})
 // HTML escaping helper for security
 const escapeHtml = (text) => {
   const map = {
