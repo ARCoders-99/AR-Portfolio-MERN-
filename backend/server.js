@@ -142,7 +142,7 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     // 4. Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev', // Use your verified domain in production
-      to: 'abdulrehman.codeworks@gmail.com',
+      to: 'www.abdulrehman2202797@gmail.com',
       reply_to: email,
       subject: `Portfolio Contact Form: Message from ${escapedName}`,
       html: `
