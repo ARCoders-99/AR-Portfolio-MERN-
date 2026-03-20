@@ -16,7 +16,6 @@ app.set('trust proxy', 1)
 // 1. Configure CORS first
 app.use(cors({
   origin: ["https://ar-portfolio-web.onrender.com"],
-  credentials: true 
 }));
 
 // 2. Body parsing middleware should be separate
