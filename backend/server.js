@@ -140,25 +140,30 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     }
 
     // 4. Send email using Resend
-    const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Use your verified domain in production
-      to: 'www.abdulrehman2202797@gmail.com',
-      reply_to: email,
-      subject: `Portfolio Contact Form: Message from ${escapedName}`,
-      html: `
-        <div style="font-family: sans-serif; line-height: 1.5; color: #333;">
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${escapedName}</p>
-          <p><strong>Email:</strong> ${escapedEmail}</p>
-          <p><strong>Message:</strong></p>
-          <div style="background: #f4f4f4; padding: 15px; border-radius: 5px;">
-            ${escapedMessage}
-          </div>
-          <hr style="border: none; border-top: 1px solid #eee; margin-top: 20px;">
-          <p style="font-size: 0.8em; color: #888;">Sent from your Portfolio contact form.</p>
-        </div>
-      `,
-    })
+ // 4. Send email using Resend
+const { data, error } = await resend.emails.send({
+  from: 'onboarding@resend.dev',
+  to: 'www.abdulrehman2202797@gmail.com',
+  reply_to: email,
+  
+  // UPDATED SUBJECT: Added Date and Time to make it unique
+  subject: `New Message: ${escapedName} [${new Date().toLocaleString()}]`,
+  
+  html: `
+    <div style="font-family: sans-serif; line-height: 1.5; color: #333;">
+      <h2 style="color: #2563eb;">New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${escapedName}</p>
+      <p><strong>Email:</strong> ${escapedEmail}</p>
+      <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+      <p><strong>Message:</strong></p>
+      <div style="background: #f4f4f4; padding: 15px; border-radius: 8px; border-left: 4px solid #2563eb;">
+        ${escapedMessage}
+      </div>
+      <hr style="border: none; border-top: 1px solid #eee; margin-top: 20px;">
+      <p style="font-size: 0.8em; color: #888;">This message was sent from your portfolio contact form.</p>
+    </div>
+  `,
+})
 
     if (error) throw error
 
