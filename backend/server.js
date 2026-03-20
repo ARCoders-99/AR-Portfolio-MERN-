@@ -66,14 +66,22 @@ setInterval(() => {
 // Create transporter for Nodemailer
 const createTransporter = () => {
   return nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465, // Use 465 for Secure SSL
+    secure: true, // Must be true for port 465
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
-  })
-}
-
+    // This helps bypass network timeouts on hosting providers like Render
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+    tls: {
+      rejectUnauthorized: false 
+    }
+  });
+};
 // HTML escaping helper for security
 const escapeHtml = (text) => {
   const map = {
