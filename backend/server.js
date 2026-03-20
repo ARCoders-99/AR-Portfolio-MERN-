@@ -13,13 +13,15 @@ const PORT = process.env.PORT || 5000
 app.set('trust proxy', 1)
 
 // Middleware
+// 1. Configure CORS first
 app.use(cors({
-  origin: [
-    "https://ar-portfolio-web.onrender.com"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  origin: ["https://ar-portfolio-web.onrender.com"],
+  credentials: true 
 }));
+
+// 2. Body parsing middleware should be separate
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Rate limiting for contact form
 const contactLimiter = rateLimit({
