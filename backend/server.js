@@ -14,9 +14,19 @@ app.set('trust proxy', 1)
 
 // Middleware
 // 1. Configure CORS first
+// Middleware
 app.use(cors({
-  origin: ["https://ar-portfolio-web.onrender.com"],
+  // This allows both your live site and your local development site
+  origin: [
+    "https://ar-portfolio-web.onrender.com", 
+    "http://localhost:3000",
+    "http://localhost:5173" // Default for Vite
+  ],
+  credentials: true 
 }));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // 2. Body parsing middleware should be separate
 app.use(express.json());
