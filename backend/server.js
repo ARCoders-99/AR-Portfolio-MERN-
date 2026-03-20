@@ -15,7 +15,6 @@ app.set('trust proxy', 1)
 // Middleware
 app.use(cors({
   origin: [
-    "http://localhost:5173",
     "https://ar-portfolio-web.onrender.com"
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
