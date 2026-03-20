@@ -67,19 +67,17 @@ setInterval(() => {
 const createTransporter = () => {
   return nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465, // Use 465 for Secure SSL
-    secure: true, // Must be true for port 465
+    port: 587,
+    secure: false, // Must be false for 587
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
-    // This helps bypass network timeouts on hosting providers like Render
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
     tls: {
+      ciphers: 'SSLv3',
       rejectUnauthorized: false 
-    }
+    },
+    connectionTimeout: 20000, // Increase to 20 seconds
   });
 };
 // HTML escaping helper for security
